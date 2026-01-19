@@ -53,10 +53,10 @@ async function getBookRecommendation(query) {
     removeTypingIndicator();
 
     if (!data.docs || data.docs.length === 0) {
-      return "No books found for that topic. Try another keyword.";
+      return `No books found for <strong>${query}</strong>. Try another keyword.`;
     }
 
-    let message = "Your recommended reads:<br><br>";
+    let message = `Your recommended reads for <em>${query}</em>:<br><br>`;
 
     data.docs.slice(0, 5).forEach((book) => {
       const title = book.title || "Unknown Title";
@@ -64,10 +64,19 @@ async function getBookRecommendation(query) {
         ? book.author_name.join(", ")
         : "Unknown Author";
       const year = book.first_publish_year || "Unknown Year";
+      const bookUrl = book.key
+      ?  `https://openlibrary.org${book.key}`
+        : null;
 
       message += `<strong>${title}</strong><br>`;
       message += `Author: ${author}<br>`;
       message += `Published: ${year}<br><br>`;
+      
+      if (bookUrl) {
+    message += `<a href="${bookUrl}" target="_blank">Read / Borrow on Open Library</a><br>`;
+  }
+
+  message += `<br>`;
     });
 
     return message;
