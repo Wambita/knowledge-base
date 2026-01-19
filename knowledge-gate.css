@@ -112,3 +112,52 @@ body {
   color: #333333;
   border-bottom-left-radius: 4px;
 }
+
+ .typing {
+  align-self: flex-start;
+  background-color: #f1f0f0;
+  color: #333;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  margin: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.typing .dots {
+  display: flex;
+  gap: 4px;
+}
+
+.typing .dot {
+  width: 6px;
+  height: 6px;
+  background-color: #999;
+  border-radius: 50%;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+.typing .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
